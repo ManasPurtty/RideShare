@@ -33,6 +33,7 @@ export default function Login() {
       setLoading(false);
       alert("✅ Login successful!");
       localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("token", data.token);
 
       // Redirect based on role
       if (formData.role === "owner") {

@@ -9,6 +9,8 @@ import authRoutes from "./routes/auth.js";
 import bikeRoutes from "./routes/bikeRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import connectDB from "./db.js";
+import userRoutes from "./routes/userRoutes.js";
+import reviewRoutes from "./routes/Review.js";
 
 // 🧩 Setup __dirname for ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -39,6 +41,8 @@ app.use("/uploads", express.static(uploadDir));
 app.use("/api", authRoutes);
 app.use("/api/bikes", bikeRoutes);
 app.use("/api/bookings", bookingRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/reviews", reviewRoutes);
 
 // 🌐 Connect MongoDB
 // mongoose
@@ -48,5 +52,5 @@ app.use("/api/bookings", bookingRoutes);
 
 connectDB();
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

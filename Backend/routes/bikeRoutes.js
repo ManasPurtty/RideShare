@@ -6,7 +6,10 @@ import {
   getBikeById,
   updateBike,
   deleteBike,
+  rateBike,
+  getBikeRatings,
 } from "../controllers/bikeController.js";
+import { protect } from "../middlewares/auth.js";
 
 const router = express.Router();
 
@@ -27,5 +30,14 @@ router.put("/:id", updateBike);
 
 // 🗑️ Delete a bike
 router.delete("/:id", deleteBike);
+
+// ⭐ Rate a bike (only if user rented it in the past)
+router.post("/:id/rate", protect, rateBike);
+
+// optional: get ratings / average rating
+router.get("/:id/ratings", getBikeRatings);
+
+
+
 
 export default router;

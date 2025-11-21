@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import path from "path";
 import { register, login } from "../controllers/authController.js";
+import { protect } from "../middlewares/auth.js";
 
 const router = express.Router();
 
@@ -25,5 +26,10 @@ router.post(
 
 // 🔑 Login
 router.post("/login", login);
+
+//logout
+router.post("/logout", protect, (req, res) => {
+  res.status(200).json({ message: "Logged out successfully" });
+});
 
 export default router;
